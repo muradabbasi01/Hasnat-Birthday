@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>🎂 Hasnat | Bestfriend + Crime Partner | Birthday Celebration 🎂</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #0a0a0a;
+        font-family: 'Segoe UI', 'Poppins', sans-serif;
+        color: #fff3e6;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    #intro {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, #0a1a1a, #000000);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        backdrop-filter: blur(2px);
+    }
+
+    #intro h1 {
+        font-size: 3rem;
+        background: linear-gradient(135deg, #ffb347, #ff6b6b);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-align: center;
+        padding: 0 20px;
+        animation: fadeGlow 2s forwards;
+        opacity: 0;
+    }
+
+    #enterBtn {
+        margin-top: 2rem;
+        padding: 14px 38px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(45deg, #ff6b6b, #ffb347);
+        color: #1a1a1a;
+        cursor: pointer;
+        box-shadow: 0 0 15px #ff6b6b;
+        transition: 0.3s;
+        opacity: 0;
+        animation: fadeGlow 2.5s forwards;
+    }
+
+    #enterBtn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px #ffb347;
+    }
+
+    .container {
+        display: none;
+        position: relative;
+        min-height: 100vh;
+        padding: 30px 20px;
+        background: rgba(0,0,0,0.7);
+        z-index: 2;
+        text-align: center;
+    }
+
+    .watermark-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .watermark-text {
+        position: absolute;
+        white-space: nowrap;
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: rgba(255, 107, 107, 0.12);
+        font-family: monospace;
+        text-transform: uppercase;
+        transform: rotate(-5deg);
+        user-select: none;
+        pointer-events: none;
+        animation: floatWatermark 20s linear infinite;
+    }
+
+    @keyframes floatWatermark {
+        0% { transform: translateY(0px) rotate(-5deg); opacity: 0.12; }
+        50% { transform: translateY(-15px) rotate(-3deg); opacity: 0.2; }
+        100% { transform: translateY(0px) rotate(-5deg); opacity: 0.12; }
+    }
+
+    .story-block {
+        max-width: 650px;
+        margin: 20px auto;
+        background: rgba(255, 107, 107, 0.15);
+        backdrop-filter: blur(12px);
+        padding: 20px 24px;
+        border-radius: 60px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255, 107, 107, 0.4);
+        opacity: 0;
+        transform: translateY(40px);
+        transition: 1s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        text-align: left;
+        color: #ffe6e6;
+    }
+
+    .story-block.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    button {
+        padding: 12px 28px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(95deg, #ff6b6b, #ffb347);
+        color: #1a1a1a;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+    }
+
+    button:hover {
+        transform: scale(1.02);
+        filter: brightness(1.05);
+    }
+
+    #startBtn {
+        margin: 20px auto;
+        font-size: 1.4rem;
+        padding: 14px 38px;
+    }
+
+    #proposal {
+        display: none;
+        background: rgba(0,0,0,0.5);
+        padding: 30px 20px;
+        border-radius: 70px;
+        backdrop-filter: blur(8px);
+        width: 90%;
+        max-width: 500px;
+        text-align: center;
+        margin: 40px auto 60px auto;
+        position: relative;
+        border: 1px solid #ff6b6b;
+    }
+
+    .ring {
+        font-size: 5rem;
+        margin-bottom: 20px;
+        animation: ringGlow 1.5s infinite alternate;
+        display: inline-block;
+    }
+
+    @keyframes ringGlow {
+        0% { text-shadow: 0 0 10px #ff6b6b, 0 0 20px #ffb347; transform: scale(1); }
+        100% { text-shadow: 0 0 30px #ffb347, 0 0 40px #ff6b6b; transform: scale(1.05); }
+    }
+
+    #proposal h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: #ffcccc;
+    }
+
+    #noBtn {
+        margin-left: 20px;
+        background: #3a2a2a;
+        position: relative;
+        z-index: 10;
+    }
+
+    .video-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 300;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #birthdayVideo {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    #images {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 200;
+        overflow: hidden;
+    }
+
+    #images img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        opacity: 0;
+        transition: opacity 2s ease, transform 6s ease;
+        transform: scale(1);
+    }
+
+    #images img.active {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+    .slideshow-text {
+        position: fixed;
+        bottom: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.85);
+        backdrop-filter: blur(12px);
+        padding: 14px 28px;
+        border-radius: 60px;
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: #ffcccc;
+        border: 1px solid #ff6b6b;
+        font-family: monospace;
+        z-index: 250;
+        text-align: center;
+        white-space: nowrap;
+        pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+        .slideshow-text {
+            font-size: 1.2rem;
+            padding: 8px 16px;
+            white-space: normal;
+            width: 90%;
+            bottom: 15%;
+        }
+        .story-block {
+            font-size: 1rem;
+            padding: 14px 16px;
+        }
+        #proposal h2 {
+            font-size: 1.6rem;
+        }
+        #intro h1 {
+            font-size: 1.8rem;
+        }
+    }
+
+    .confetti {
+        position: fixed;
+        top: -20px;
+        font-size: 1.8rem;
+        pointer-events: none;
+        z-index: 999;
+        animation: fallConfetti linear forwards;
+    }
+
+    @keyframes fallConfetti {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeGlow {
+        0% { opacity: 0; text-shadow: 0 0 0px transparent; }
+        100% { opacity: 1; text-shadow: 0 0 12px #ff6b6b; }
+    }
+
+    .container > h1 {
+        font-size: 2rem;
+        background: linear-gradient(120deg, #ffcccc, #ffb347);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 25px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<!-- INTRO SCREEN -->
+<div id="intro">
+    <h1>🔥 For My Crime Partner — Hasnat 🔥</h1>
+    <button id="enterBtn">🤝 Enter The Celebration 🤝</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container" id="main">
+    <div id="watermarkWrapper" class="watermark-bg"></div>
+    <h1>💥 Hasnat • Bestfriend + Crime Partner 💥</h1>
+    <div id="story"></div>
+    <button id="startBtn">🎂 Start Birthday Journey 🎂</button>
+    <div id="proposal">
+        <div class="ring">🏆 🤜🤛 🏆</div>
+        <h2>🤝 Will you accept this legendary bond — Bestfriend & Crime Partner forever? 🤝</h2>
+        <button id="yesBtn">Hell Yeah! Forever Partners 💪</button>
+        <button id="noBtn">🌀 Try to escape but crime partner code is eternal 🌀</button>
+    </div>
+</div>
+
+<!-- VIDEO CONTAINER -->
+<div class="video-container" id="videoContainer">
+    <video id="birthdayVideo" controls autoplay muted playsinline>
+        <source src="lv_7535242429855780149_20260426235217.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+
+<!-- SLIDESHOW IMAGES -->
+<div id="images">
+    <img src="IMG-20260426-WA0039.jpg" alt="Memory 1">
+    <img src="IMG-20260426-WA0041.jpg" alt="Memory 2">
+    <img src="IMG-20260426-WA0042.jpg" alt="Memory 3">
+    <img src="IMG-20260426-WA0043.jpg" alt="Memory 4">
+    <img src="IMG-20260426-WA0044.jpg" alt="Memory 5">
+    <img src="IMG-20260426-WA0045.jpg" alt="Memory 6">
+    <img src="IMG-20260426-WA0046.jpg" alt="Memory 7">
+    <img src="IMG-20260426-WA0050.jpg" alt="Memory 8">
+    <img src="IMG-20260426-WA0051.jpg" alt="Memory 9">
+    <img src="IMG-20260426-WA0053.jpg" alt="Memory 10">
+    <img src="IMG-20260426-WA0039.jpg" alt="Memory 11">
+    <img src="IMG-20260426-WA0044.jpg" alt="Memory 12">
+</div>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// ENTER SITE FUNCTION
+function enterSite() {
+    const intro = document.getElementById('intro');
+    const mainDiv = document.getElementById('main');
+    if (intro) intro.style.display = 'none';
+    if (mainDiv) mainDiv.style.display = 'block';
+    createWatermarkText();
+    startFloatingEmojis();
+    startHeartbeatGlow();
+}
+
+// Watermark creation
+function createWatermarkText() {
+    const watermarkContainer = document.getElementById('watermarkWrapper');
+    if (!watermarkContainer) return;
+    watermarkContainer.innerHTML = '';
+    const phrases = ['HASNAT THE GREAT 💥', 'CRIME PARTNER 🔥', 'BESTFRIEND 🎂', 'HASNAT 👑', 'PARTNER IN CRIME'];
+    for (let i = 0; i < 30; i++) {
+        const span = document.createElement('div');
+        span.classList.add('watermark-text');
+        span.innerText = phrases[i % phrases.length];
+        span.style.left = Math.random() * 100 + '%';
+        span.style.top = Math.random() * 100 + '%';
+        span.style.transform = `rotate(${(Math.random() * 20) - 10}deg)`;
+        span.style.fontSize = (1 + Math.random() * 1.2) + 'rem';
+        span.style.animationDuration = (15 + Math.random() * 15) + 's';
+        watermarkContainer.appendChild(span);
+    }
+}
+
+// Floating emojis
+let floatInterval;
+function startFloatingEmojis() {
+    if (floatInterval) clearInterval(floatInterval);
+    floatInterval = setInterval(() => {
+        const emoji = document.createElement('div');
+        const icons = ['🔥', '🤜', '🤛', '💥', '🎂', '🏆', '👑', '😈'];
+        emoji.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        emoji.style.position = 'fixed';
+        emoji.style.left = Math.random() * 100 + '%';
+        emoji.style.bottom = '-20px';
+        emoji.style.fontSize = (Math.random() * 18 + 14) + 'px';
+        emoji.style.opacity = 0.6;
+        emoji.style.pointerEvents = 'none';
+        emoji.style.zIndex = '998';
+        emoji.style.animation = 'floatUp 7s ease-out forwards';
+        document.body.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 7000);
+    }, 800);
+}
+
+// Add floatUp animation
+const floatStyle = document.createElement('style');
+floatStyle.textContent = `@keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 0.7; } 100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; } }`;
+document.head.appendChild(floatStyle);
+
+// Story messages - HASNAT: Bestfriend + Crime Partner
+const storyMessages = [
+    "🎂 Happy Birthday, mere dost — Hasnat! Tu mera bestfriend hai, aur sab se import baat — tu mera crime partner bhi hai. 😈🤜",
+    "🤝 Yaad hai wo raatein? Jab hum 2 baje planning karte the — kiski setting karni hai, kiski class leni hai, kaun si shararat karni hai. Tu ready, main ready. 🔥",
+    "😂 Tu ne kabhi mujhe dhoka nahi diya — chahe pakde gaye, chahe bache. Bas ek baar tune meri setting nahi kari (wo alag kahani hai 😏), lekin uske liye maine tujhe maaf kar diya — kyuki tu crime partner hai, villain nahi. 🤪",
+    "🕵️‍♂️ Humari jodi legendary hai — Tu idea laata hai, main execution karta hoon. Kabhi ulta bhi hota hai. Lekin end mein dono haste hain 🍻",
+    "💥 Yaad hai wo din? Jab humne socha tha duniya jeet lenge, lekin mummy pakad gayi? 😂 Tu bhaaga, main bhaaga — lekin dono pakde gaye. Crime partner forever. 🤣",
+    "🎯 Aaj teri birthday hai, toh main emotional nahi hone wala — lekin itna kahunga: Tu mere TOP TWO mein hai. Chahe kitne bhi dost ho, teri jagah kisi se kam nahi. 🫀",
+    "😶 Jo main kabhi nahi keh sakta wo kah raha hoon: Tu mere liye sirf dost nahi, tu mera bhai, mera partner-in-crime, aur meri crazy adventures ka reason hai. 💔✨",
+    "🫀 Happy birthday, mere crime partner! Agli shararat teri birthday ke baad — is baar pakka nahi pakdenge 😎",
+    "🎂 Tu legend hai, dost hai, crime partner hai. Bas thoda sa 'planning mein hero, execution mein zero' hai tu — lekin main hoon na, sambhal lunga. 😂💖",
+    "🤜🤛 Love you bhai! Janam din mubarak, Hasnat! 🎉🎂 Ab agle saal tak crime files update karte hain. 📂🔥"
+];
+
+let currentStoryIndex = 0;
+let confettiInterval = null;
+let textInterval = null;
+let slideInterval = null;
+
+// Typewriter effect
+function typeWriterEffect(element, text, callback) {
+    let i = 0;
+    element.innerHTML = '';
+    function typing() {
+        if (i < text.length) {
+            element.innerHTML += text[i];
+            i++;
+            setTimeout(typing, 30);
+        } else {
+            if (callback) callback();
+        }
+    }
+    typing();
+}
+
+// Display stories one by one
+function displayNextStory() {
+    if (currentStoryIndex < storyMessages.length) {
+        const blocks = document.querySelectorAll('.story-block');
+        const block = blocks[currentStoryIndex];
+        if (block) {
+            block.classList.add('visible');
+            typeWriterEffect(block, storyMessages[currentStoryIndex], () => {
+                currentStoryIndex++;
+                setTimeout(displayNextStory, 650);
+            });
+        }
+    } else {
+        const startBtn = document.getElementById('startBtn');
+        if (startBtn) startBtn.style.display = 'none';
+        const proposal = document.getElementById('proposal');
+        if (proposal) {
+            proposal.style.display = 'block';
+            proposal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+}
+
+// Create story blocks
+function createStoryBlocks() {
+    const storyDiv = document.getElementById('story');
+    if (!storyDiv) return;
+    storyDiv.innerHTML = '';
+    storyMessages.forEach((msg, idx) => {
+        let block = document.createElement('div');
+        block.className = 'story-block';
+        block.id = `storyBlock${idx}`;
+        storyDiv.appendChild(block);
+    });
+}
+
+// Start party function
+function startParty() {
+    const startBtn = document.getElementById('startBtn');
+    if (startBtn) startBtn.style.display = 'none';
+    
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic) bgMusic.play().catch(e => console.log("Audio play blocked"));
+    
+    if (confettiInterval) clearInterval(confettiInterval);
+    confettiInterval = setInterval(() => {
+        for (let i = 0; i < 4; i++) {
+            const conf = document.createElement('div');
+            conf.className = 'confetti';
+            const symbols = ['🔥', '🎂', '💥', '🤜', '🤛', '🏆', '👑', '😈'];
+            conf.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            conf.style.left = Math.random() * 100 + '%';
+            conf.style.fontSize = (Math.random() * 24 + 14) + 'px';
+            conf.style.animationDuration = (Math.random() * 3 + 2.5) + 's';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 5500);
+        }
+    }, 280);
+    
+    currentStoryIndex = 0;
+    displayNextStory();
+}
+
+// Move "No" button
+function moveNoButton(btn) {
+    const proposal = document.getElementById('proposal');
+    if (!proposal) return;
+    const rect = proposal.getBoundingClientRect();
+    const btnWidth = btn.offsetWidth;
+    const btnHeight = btn.offsetHeight;
+    const maxX = Math.max(0, rect.width - btnWidth - 20);
+    const maxY = Math.max(0, rect.height - btnHeight - 20);
+    const newLeft = Math.random() * maxX;
+    const newTop = Math.random() * maxY;
+    btn.style.position = 'absolute';
+    btn.style.left = newLeft + 'px';
+    btn.style.top = newTop + 'px';
+    btn.style.marginLeft = '0';
+    
+    const msg = document.createElement('div');
+    msg.innerText = '🌀 Crime partner code says: you cannot escape this legendary friendship 🌀';
+    msg.style.position = 'fixed';
+    msg.style.bottom = '30%';
+    msg.style.left = '50%';
+    msg.style.transform = 'translateX(-50%)';
+    msg.style.background = 'rgba(0,0,0,0.8)';
+    msg.style.padding = '10px 20px';
+    msg.style.borderRadius = '50px';
+    msg.style.fontSize = '1rem';
+    msg.style.color = '#ffcccc';
+    msg.style.zIndex = '1000';
+    msg.style.whiteSpace = 'nowrap';
+    document.body.appendChild(msg);
+    setTimeout(() => msg.remove(), 1500);
+}
+
+// Yes clicked - show video then slideshow
+function yesClicked() {
+    const mainDiv = document.getElementById('main');
+    if (mainDiv) {
+        const children = mainDiv.querySelectorAll(':scope > *');
+        children.forEach(child => {
+            if (!child.classList?.contains('watermark-bg') && child.id !== 'watermarkWrapper') {
+                child.style.display = 'none';
+            }
+        });
+    }
+    
+    const videoContainer = document.getElementById('videoContainer');
+    const video = document.getElementById('birthdayVideo');
+    if (videoContainer) videoContainer.style.display = 'flex';
+    if (video) video.muted = false;
+    
+    if (video) {
+        video.onended = function() {
+            if (videoContainer) videoContainer.style.display = 'none';
+            startSlideshow();
+        };
+        
+        video.onerror = function() {
+            if (videoContainer) videoContainer.style.display = 'none';
+            startSlideshow();
+        };
+        
+        video.play().catch(e => {
+            console.log("Video error:", e);
+            if (videoContainer) videoContainer.style.display = 'none';
+            startSlideshow();
+        });
+    } else {
+        if (videoContainer) videoContainer.style.display = 'none';
+        startSlideshow();
+    }
+}
+
+// Slideshow function
+function startSlideshow() {
+    const slideshowDiv = document.getElementById('images');
+    const images = document.querySelectorAll('#images img');
+    
+    if (!slideshowDiv) return;
+    slideshowDiv.style.display = 'block';
+    
+    images.forEach(img => img.classList.remove('active'));
+    let idx = 0;
+    if (images.length > 0) images[0].classList.add('active');
+    
+    if (slideInterval) clearInterval(slideInterval);
+    slideInterval = setInterval(() => {
+        images.forEach(img => img.classList.remove('active'));
+        idx = (idx + 1) % images.length;
+        images[idx].classList.add('active');
+    }, 3800);
+    
+    const textLines = [
+        "🎂 HAPPY BIRTHDAY HASNAT! BESTFRIEND + CRIME PARTNER 🎂",
+        "🤜🤛 Dost + Crime Partner = LEGENDARY 🤛🤜",
+        "💥 Tu mere TOP TWO mein hai — hamesha yaad rakhna 💥",
+        "🔥 Planning mein hero, execution mein zero — lekin main hoon na 🔥",
+        "🫀 BEST WISHES! Enjoy your day king 👑",
+        "😶 Jo main keh nahi sakta, ye slideshow wo alfaaz hai 😶",
+        "😈 Agli shararat teri birthday ke baad — pakka nahi pakdenge 😈",
+        "💖 LOVE YOU BHAI — CRIME PARTNER FOREVER 💖"
+    ];
+    
+    let textDiv = document.querySelector('.slideshow-text');
+    if (!textDiv) {
+        textDiv = document.createElement('div');
+        textDiv.className = 'slideshow-text';
+        document.body.appendChild(textDiv);
+    }
+    
+    let textIndex = 0;
+    textDiv.innerText = textLines[0];
+    if (textInterval) clearInterval(textInterval);
+    textInterval = setInterval(() => {
+        textIndex = (textIndex + 1) % textLines.length;
+        textDiv.innerText = textLines[textIndex];
+    }, 3800);
+}
+
+// Heartbeat glow effect
+function startHeartbeatGlow() {
+    setInterval(() => {
+        const mainDiv = document.getElementById('main');
+        if (mainDiv && mainDiv.style.display === 'block') {
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = 0;
+            overlay.style.left = 0;
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.background = 'radial-gradient(circle, rgba(255,107,107,0.08) 0%, rgba(0,0,0,0) 80%)';
+            overlay.style.pointerEvents = 'none';
+            overlay.style.zIndex = '1';
+            document.body.appendChild(overlay);
+            setTimeout(() => overlay.remove(), 500);
+        }
+    }, 4500);
+}
+
+// SETUP ALL EVENT LISTENERS WHEN PAGE LOADS
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Page loaded - Hasnat Birthday Celebration Ready!");
+    
+    createStoryBlocks();
+    
+    const enterBtn = document.getElementById('enterBtn');
+    const startBtn = document.getElementById('startBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    
+    if (enterBtn) enterBtn.onclick = enterSite;
+    if (startBtn) startBtn.onclick = startParty;
+    if (yesBtn) yesBtn.onclick = yesClicked;
+    
+    if (noBtn) {
+        noBtn.onmouseover = function() { moveNoButton(noBtn); };
+        noBtn.ontouchstart = function(e) { 
+            e.preventDefault(); 
+            moveNoButton(noBtn); 
+        };
+        noBtn.onclick = function(e) { 
+            e.preventDefault(); 
+            moveNoButton(noBtn); 
+            return false; 
+        };
+    }
+    
+    console.log("All event listeners set up successfully for Hasnat!");
+});
+</script>
+</body>
+</html>

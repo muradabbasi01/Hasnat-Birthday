@@ -261,6 +261,35 @@
         pointer-events: none;
     }
 
+    .poetry-image-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 350;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .poetry-image-container img {
+        max-width: 90%;
+        max-height: 80%;
+        object-fit: contain;
+        border-radius: 20px;
+        box-shadow: 0 0 50px rgba(255,107,107,0.5);
+    }
+
+    .close-poetry {
+        margin-top: 20px;
+        background: #ff6b6b;
+        padding: 10px 30px;
+        font-size: 1rem;
+    }
+
     @media (max-width: 600px) {
         .slideshow-text {
             font-size: 1.2rem;
@@ -335,7 +364,7 @@
     </div>
 </div>
 
-<!-- VIDEO CONTAINER - FIXED VIDEO NAME -->
+<!-- VIDEO CONTAINER -->
 <div class="video-container" id="videoContainer">
     <video id="birthdayVideo" controls autoplay muted playsinline>
         <source src="lv_7449819632543747381_20260430122637.mp4" type="video/mp4">
@@ -343,16 +372,20 @@
     </video>
 </div>
 
-<!-- SLIDESHOW IMAGES -->
+<!-- POETRY IMAGE CONTAINER -->
+<div class="poetry-image-container" id="poetryContainer">
+    <img src="poetry-1683380465093.jpeg" alt="Poetry for Hasnat">
+    <button class="close-poetry" id="closePoetryBtn">Continue to Memories ✨</button>
+</div>
+
+<!-- SLIDESHOW IMAGES (6 images) -->
 <div id="images">
     <img src="IMG_20260430_120358_011.jpg" alt="Memory 1">
     <img src="IMG_20260430_120509_753.jpg" alt="Memory 2">
     <img src="IMG_20260430_120518_774.jpg" alt="Memory 3">
     <img src="IMG_20260430_120527_249.jpg" alt="Memory 4">
-    <img src="IMG_20260430_120541_515.jpg" alt="Memory 5">
-    <img src="IMG_20260430_120509_753.jpg" alt="Memory 6">
-    <img src="IMG_20260430_120546_766.jpg" alt="Memory 7">
-    <img src="poetry-1683380465093.jpeg" alt="Memory 8">
+    <img src="IMG_20260430_120546_766.jpg" alt="Memory 5">
+    <img src="IMG_20260430_120541_515.jpg" alt="Memory 6">
 </div>
 
 <audio id="bgMusic" loop preload="auto">
@@ -547,7 +580,7 @@ function moveNoButton(btn) {
     setTimeout(() => msg.remove(), 1500);
 }
 
-// Yes clicked - show video then slideshow
+// Yes clicked - show video then poetry then slideshow
 function yesClicked() {
     const mainDiv = document.getElementById('main');
     if (mainDiv) {
@@ -567,26 +600,44 @@ function yesClicked() {
     if (video) {
         video.onended = function() {
             if (videoContainer) videoContainer.style.display = 'none';
-            startSlideshow();
+            showPoetryImage();
         };
         
         video.onerror = function() {
+            console.log("Video error - showing poetry directly");
             if (videoContainer) videoContainer.style.display = 'none';
-            startSlideshow();
+            showPoetryImage();
         };
         
         video.play().catch(e => {
             console.log("Video error:", e);
             if (videoContainer) videoContainer.style.display = 'none';
-            startSlideshow();
+            showPoetryImage();
         });
     } else {
         if (videoContainer) videoContainer.style.display = 'none';
-        startSlideshow();
+        showPoetryImage();
     }
 }
 
-// Slideshow function
+// Show poetry image after video
+function showPoetryImage() {
+    const poetryContainer = document.getElementById('poetryContainer');
+    if (poetryContainer) {
+        poetryContainer.style.display = 'flex';
+    }
+}
+
+// Close poetry and start slideshow
+function closePoetryAndStartSlideshow() {
+    const poetryContainer = document.getElementById('poetryContainer');
+    if (poetryContainer) {
+        poetryContainer.style.display = 'none';
+    }
+    startSlideshow();
+}
+
+// Slideshow function with 6 images
 function startSlideshow() {
     const slideshowDiv = document.getElementById('images');
     const images = document.querySelectorAll('#images img');
@@ -662,10 +713,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const startBtn = document.getElementById('startBtn');
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
+    const closePoetryBtn = document.getElementById('closePoetryBtn');
     
     if (enterBtn) enterBtn.onclick = enterSite;
     if (startBtn) startBtn.onclick = startParty;
     if (yesBtn) yesBtn.onclick = yesClicked;
+    if (closePoetryBtn) closePoetryBtn.onclick = closePoetryAndStartSlideshow;
     
     if (noBtn) {
         noBtn.onmouseover = function() { moveNoButton(noBtn); };
